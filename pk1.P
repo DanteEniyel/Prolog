@@ -1,0 +1,55 @@
+/*
+Neka je zadana baza činjenica kao što slijedi:
+
+cijena( sok, 12 ).
+cijena( kava, 6 ).
+cijena( klipic, 3 ).
+narudzba( 1, [ sok, sok, kava, klipic, klipic ] ).
+narudzba( 2, [ kava, kava, sok ] ).
+
+Implementirajte predikat racun/2 koji će za prvi argument primati broj narudžbe, a uz drugi vezati ukupnu cijenu.
+
+Primjeri korištenja:
+
+| ?- racun( 1, R ).
+
+R = 36;
+
+no
+| ?- racun( 2, R ).
+
+R = 24;
+
+no
+*/
+
+cijena(sok,12).
+cijena(kava,6).
+cijena(klipic,3).
+
+narudzba(1,[sok,sok,kava,klipic,klipic]).
+narudzba(2,[kava,kava,sok]).
+
+
+suma([],0).
+suma([G|R], S):-
+	cijena(G,C),
+	suma(R,S1),
+	S is C+S1.
+
+racun(N,C):-
+	narudzba(N,A),
+	suma(A,C).
+
+%ili
+:-import member/2 from lists.
+
+suma1([],0).
+suma1([G|R],S):-
+	suma1(R,S1),
+	S is G+S1.
+
+racun1(N,C):-
+	narudzba(N,A),
+	findall(B, (member(A1,A),cijena(A1,B)), L),
+	suma1(L,C).
