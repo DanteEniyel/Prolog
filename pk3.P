@@ -1,0 +1,30 @@
+/*
+Bez korištenja ugrađenih predikata, implementirajte predikat skup/2 koji će za prvi argument primati listu proizvoljnih elemenata, a za drugi vezati listu u kojoj su uklonjeni svi duplikati.
+
+Primjeri korištenja:
+| ?- skup( [ a, 1, rr, a, 2, 1, t ], L ).
+
+L = [rr,a,2,1,t];
+
+no
+| ?- skup( [ 1, 1, 1, 1, 2, 1, 1, 2 ], L ).
+
+L = [1,2];
+
+no
+*/
+
+ne_postoji(_,[]).
+ne_postoji(E,[G|R]):-
+	(E\=G ->ne_postoji(E,R)).
+
+skup([],[]).
+
+skup([G|R],L):-
+	(ne_postoji(G,R)->L =G;true),
+	skup(R,L).
+skup([G|R],[LG|LR]):-
+	(ne_postoji(G,R)->LG =G;true),
+	skup(R,LR).
+
+%nije skroz tocno :D

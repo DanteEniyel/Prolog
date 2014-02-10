@@ -1,0 +1,104 @@
+/*
+Implementirajte gramatiku koja će prepoznavati jednostavne rečenice oblika:
+
+subjekt predikat objekt.
+
+Subjekti mogu biti:
+- Ivek
+- Stef
+- Bara
+
+Predikati mogu biti
+- voli
+- jede
+- gleda
+
+Objekti mogu biti
+- sladoled
+- kobasice
+
+Primjer korištenja:
+| ?- recenica( X, Y, [] ).
+
+X = recenica(subjekt(Ivek),predikat(voli),objekt(sladoled))
+Y = [Ivek,voli,sladoled];
+
+X = recenica(subjekt(Ivek),predikat(voli),objekt(kobasice))
+Y = [Ivek,voli,kobasice];
+
+X = recenica(subjekt(Ivek),predikat(jede),objekt(sladoled))
+Y = [Ivek,jede,sladoled];
+
+X = recenica(subjekt(Ivek),predikat(jede),objekt(kobasice))
+Y = [Ivek,jede,kobasice];
+
+X = recenica(subjekt(Ivek),predikat(gleda),objekt(sladoled))
+Y = [Ivek,gleda,sladoled];
+
+X = recenica(subjekt(Ivek),predikat(gleda),objekt(kobasice))
+Y = [Ivek,gleda,kobasice];
+
+X = recenica(subjekt(Stef),predikat(voli),objekt(sladoled))
+Y = [Stef,voli,sladoled];
+
+X = recenica(subjekt(Stef),predikat(voli),objekt(kobasice))
+Y = [Stef,voli,kobasice];
+
+X = recenica(subjekt(Stef),predikat(jede),objekt(sladoled))
+Y = [Stef,jede,sladoled];
+
+X = recenica(subjekt(Stef),predikat(jede),objekt(kobasice))
+Y = [Stef,jede,kobasice];
+
+X = recenica(subjekt(Stef),predikat(gleda),objekt(sladoled))
+Y = [Stef,gleda,sladoled];
+
+X = recenica(subjekt(Stef),predikat(gleda),objekt(kobasice))
+Y = [Stef,gleda,kobasice];
+
+X = recenica(subjekt(Bara),predikat(voli),objekt(sladoled))
+Y = [Bara,voli,sladoled];
+
+X = recenica(subjekt(Bara),predikat(voli),objekt(kobasice))
+Y = [Bara,voli,kobasice];
+
+X = recenica(subjekt(Bara),predikat(jede),objekt(sladoled))
+Y = [Bara,jede,sladoled];
+
+X = recenica(subjekt(Bara),predikat(jede),objekt(kobasice))
+Y = [Bara,jede,kobasice];
+
+X = recenica(subjekt(Bara),predikat(gleda),objekt(sladoled))
+Y = [Bara,gleda,sladoled];
+
+X = recenica(subjekt(Bara),predikat(gleda),objekt(kobasice))
+Y = [Bara,gleda,kobasice];
+
+no
+| ?-
+*/
+
+recenica(recenica(S,P,O))-->subjekt(S), predikat(P),objekt(O).
+
+
+subjekt(subjekt('Ivek'))-->['Ivek'].
+subjekt(subjekt('Stef'))-->['Stef'].
+subjekt(subjekt('Bara'))-->['Bara'].
+
+predikat(predikat(voli))-->[voli].
+predikat(predikat(jede))-->[jede].
+predikat(predikat(gleda))-->[gleda].
+
+objekt(objekt(sladoled))-->[sladoled].
+objekt(objekt(kobasice))-->[kobasice].
+
+
+%ili
+%subjekt(subjekt(X))-->[X], {X='Ivek',X='Stef',X='Bara'}.
+%predikat(predikat(X))-->[X], {X=voli,X=jede,X=gleda}.
+%objekt(objekt(X))-->[X], {X=sladoled,X=kobasice}.
+
+
+
+
+

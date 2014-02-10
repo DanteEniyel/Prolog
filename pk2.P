@@ -1,0 +1,18 @@
+/*
+Implementirajte operator ri za rastavljanje izraza u listi zbrojeva proizvoljne duljine, te operator rj za jednakost.
+
+Primjeri korištenja:
+
+| ?- [ a + b, c + d ] rj X ri Y.
+
+X = [a,c]
+Y = [b,d];
+
+no
+| ?- [ p + l, r + o, o + g ] rj X ri Y.
+
+X = [p,r,o]
+Y = [l,o,g];
+
+no
+*/

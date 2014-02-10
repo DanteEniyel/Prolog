@@ -1,0 +1,37 @@
+:-table pod/3.
+
+put(a,b).
+put(a,c).
+put(b,c).
+put(b,d).
+put(c,e).
+put(c,f).
+put(d,g).
+put(e,d).
+put(e,g).
+put(f,h).
+put(g,h).
+
+veza(X,Y):-
+	put(X,Y).
+
+
+putanja(X,Y):-
+	put(X,Y).
+putanja(X,Y):-
+	put(X,Z),
+	putanja(Z,Y).
+
+
+
+dostupno(X,L):-
+	setof(Y, putanja(X,Y), L).
+
+
+pod(X,Y,L):-
+	veza(X,Y),
+	L = [X,Y].
+pod(X,Y,[X|R]):-
+	veza(X,Z),
+	pod(Z,Y,R).
+	

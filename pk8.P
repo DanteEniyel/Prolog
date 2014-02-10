@@ -1,0 +1,19 @@
+/*
+Implementirajte predikat spoji_recenicu/1 koji će sa adrese:
+
+http://arka.foi.hr/~mschatten/lp/k2.html
+
+povući HTML dokument i u parametru vratiti znakovni niz koji se sastoji od početka i kraja rečenice kao što je napisano na adresi.
+
+Primjer korištenja:
+
+spoji_recenicu( R ).
+
+R = Ovo je početak a ovo kraj rečenice.;
+*/
+
+
+:- use_module(library(http/http_client)).
+
+
+http_get('http://arka.foi.hr/~mschatten/lp/k2.html', Reply, []).

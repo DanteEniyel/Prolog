@@ -1,0 +1,22 @@
+/*
+Implementirajte gramatiku koja će prepoznavati izraze zbrajanja i oduzimanja dvaju brojeva te konstruirati odgovarajuće stablo sintakse.
+
+| ?- izraz( X, [ 2.1, '-', 55 ], [] ).
+
+X = izraz(prvi(2.1000),operator(-),drugi(55))
+no
+| ?- izraz( X, [ 17, '+', 22.43 ], [] ).
+
+X = izraz(prvi(17),operator(+),drugi(22.4300));
+
+no
+
+*/
+
+izraz(izraz(X,Y,Z))-->prvi(X), operator(Y), drugi(Z).
+
+prvi(prvi(X))-->[X], {number(X)}.
+drugi(drugi(Z))-->[Z], {number(Z)}.
+
+operator(operator(-))-->['-'].
+operator(operator(+))-->['+'].

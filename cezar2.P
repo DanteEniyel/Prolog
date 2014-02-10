@@ -1,0 +1,36 @@
+/*Implementirajte predikat cezarova_sifra/3 koji će za zadani znakovni niz te zadani pomak, vratiti odgovarajući šifrat. Vidi:
+
+http://hr.wikipedia.org/wiki/Cezarova_%C5%A1ifra
+
+Dopušteno je korištenje ugrađenih predikata. Pretpostavite da se zadani znakovni niz sastoji isključivo od ASCII velikih ili malih slova i znaka space (obratiti pozornost na to da ASCII kodovi za slova idu od brojeva 65 - 90 te od 97 - 122, te da je ASCII kod za space 32).
+
+Primjeri korištenja:
+
+| ?- cezarova_sifra( "the quick brown fox jumps over the lazy dog", 3, S ).
+
+S = xliDuymgoDfvs rDjs DnyqtwDszivDxliDpeBADhsk;
+
+no
+| ?- cezarova_sifra( "mqnqmxklBlgBrqnq gp", -3, S ).
+
+S = kolokvij je polozen;
+
+no
+*/
+
+
+kodiraj([],"").
+kodiraj([G|R], I):-
+	kodiraj(R, I1),
+	X is G + 1,
+	char_code(C,X),%(U sto kodiramo, sto kodiramo)
+	atom_concat(C, I1, I).%(prvi string koji spajamo, drugi string koji spajamo, u sto spajamo)
+
+lista(" ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz").
+
+cezarova_sifra([], _, "").
+cezarova_sifra([G|R], P, S):-
+	cezarova_sifra(R, P, S1),
+	( G = 32 -> X is 64+P; X is  G + P),
+	char_code(C, X),
+	atom_concat(C, S1, S).

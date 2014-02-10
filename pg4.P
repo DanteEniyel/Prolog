@@ -1,0 +1,40 @@
+/*
+
+Implementirajte gramatiku koja koja prepoznaje if-then-else izraze oblika:
+
+if ( izraz )
+then { naredbe }
+[else { naredbe } ]
+
+(else je opcionalan). Gramatika treba konstruirati stablo sintakse.
+
+Primjeri korištenja:
+
+| ?- selekcija( S, [ if, '(', a, <, b, ')', then, '{', a, +, +, '}' ], [] ).
+
+S = selekcija(if(uvjet([a,<,b])),then(naredbe([a,+,+])));
+
+no
+| ?- selekcija( S, [ if, '(', a, ')', then, '{', 'a', -, -, '}', else, '{', a, +, +, '}' ], [] ).
+
+S = selekcija(if(uvjet([a])),then(naredbe([a,-,-])),else(naredbe([a,+,+])));
+
+no
+| ?-
+*/
+
+
+selekcija(selekcija(if(U),then(N)))-->
+	[if], ['('],uvjet(U), [')'], 
+	[then], ['{'], naredbe(N), ['}'].
+
+selekcija(selekcija(if(U), then(N), else(E)))-->
+	[if], ['('],uvjet(U), [')'], 
+	[then], ['{'], naredbe(N), ['}'],
+	[else], ['{'], naredbe(E), ['}'].
+
+uvjet(uvjet(X))-->lista(X).
+naredbe(naredbe(X))-->lista(X).
+
+lista([X])--> [X].
+lista([G|R])-->[G],lista(R).

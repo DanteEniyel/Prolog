@@ -1,0 +1,33 @@
+/*
+Implementirajte kontekstualno slobodnu gramatiku koja će biti u stanju kreirati stablo sintakse za izraze while petlje oblika:
+
+while( uvijet ) {
+naredba1;
+naredba2;
+...
+naredbaN;
+}
+
+Primjer korištenja:
+
+| ?- while( S, [ 'while', '(', 'a > 3', ')', '{', 'a++', 'b = a', 'b--', '}' ], [] ).
+
+S = while(uvjet(a > 3),naredbe([a++,b = a,b--]));
+
+*/
+
+
+while(while(uvjet(U), naredbe(N))) -->  [while],
+					['('],
+					uvjet(U),
+					[')'],
+					['{'],
+					naredbe(N),
+					['}'].
+
+uvjet(U) --> [U].
+naredbe(N) --> lista(N).
+
+lista([N]) --> [N].
+lista([G|R]) --> [G], lista(R).
+

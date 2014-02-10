@@ -1,0 +1,83 @@
+/*
+Neka je zadana baza činjenica kao što slijedi:
+
+izvodjac( 1, 'izv 1' ).
+izvodjac( 2, 'izv 2' ).
+
+pjesma( 1, 'pj 1' ).
+pjesma( 2, 'pj 2' ).
+pjesma( 3, 'pj 3' ).
+pjesma( 4, 'pj 4' ).
+pjesma( 5, 'pj 5' ).
+pjesma( 6, 'pj 6' ).
+
+izvodi( 1, 1 ).
+izvodi( 1, 2 ).
+izvodi( 1, 3 ).
+izvodi( 1, 4 ).
+izvodi( 2, 5 ).
+izvodi( 2, 6 ).
+
+Implementirajte predikat playlista koji će vraćati nazive izvođača zajedno s listom pjesama koje oni izvode.
+
+Primjeri korištenja:
+
+| ?- playlista( 'izv 1', L ).
+
+L = [pjesma(pj 1),pjesma(pj 2),pjesma(pj 3),pjesma(pj 4)];
+
+no
+| ?- playlista( I, L ).
+
+I = izv 1
+L = [pjesma(pj 1),pjesma(pj 2),pjesma(pj 3),pjesma(pj 4)];
+
+I = izv 2
+L = [pjesma(pj 5),pjesma(pj 6)];
+
+no
+*/
+
+:-import member/2 from lists.
+
+izvodjac( 1, 'izv 1' ).
+izvodjac( 2, 'izv 2' ).
+
+pjesma( 1, 'pj 1' ).
+pjesma( 2, 'pj 2' ).
+pjesma( 3, 'pj 3' ).
+pjesma( 4, 'pj 4' ).
+pjesma( 5, 'pj 5' ).
+pjesma( 6, 'pj 6' ).
+
+izvodi( 1, 1 ).
+izvodi( 1, 2 ).
+izvodi( 1, 3 ).
+izvodi( 1, 4 ).
+izvodi( 2, 5 ).
+izvodi( 2, 6 ).
+
+%ovo je prema primjeru ispisa napisanog u zadatku sa member
+playlista(I,L):-
+	izvodjac(B,I),
+	findall(P, izvodi(B,P), L1),
+	findall(pjesma(N), (member(P1,L1), pjesma(P1,N)), L).
+
+%ovo je prema primjeru ispisa napisanog u zadatku bez member
+play(I, P):-
+	izvodjac(B, I),
+	findall( pjesma(Ime), (izvodi( B, Pj), pjesma(Pj, Ime)), P).
+
+%ovo mi je ljepse
+play2(I, P):-
+	izvodjac(B, I),
+	findall( Ime, (izvodi( B, Pj), pjesma(Pj, Ime)), P).
+
+
+
+
+
+
+
+
+

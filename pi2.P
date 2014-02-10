@@ -1,0 +1,31 @@
+
+zbroji([],[],[]).
+zbroji([G1|R1], [G2|R2], [GL|RL]):-
+	zbroji(R1, R2, RL),
+	GL is G1+G2.
+
+
+oduzmi([],[],[]).
+oduzmi([G1|R1], [G2|R2], [GL|RL]):-
+	oduzmi(R1, R2, RL),
+	GL is G1-G2.
+
+
+mzbroji([],[],[]).
+mzbroji([[G1|R1]|RR1],[[G2|R2]|RR2],[[LG|LR]|LRR]):-
+	zbroji(R1,R2,LR),
+	LG is G1+G2,
+	mzbroji(RR1,RR2,LRR).
+
+
+moduzmi([],[],[]).
+moduzmi([[G1|R1]|RR1],[[G2|R2]|RR2],[[LG|LR]|LRR]):-
+	oduzmi(R1,R2,LR),
+	LG is G1-G2,
+	moduzmi(RR1,RR2,LRR).
+
+	
+
+%mzbroji([[1,1],[2,2],[3,3]],[[1,1],[2,2],[3,3]],M).
+%moduzmi([[1,1],[2,2],[3,3]],[[1,1],[2,2],[3,3]],M).
+

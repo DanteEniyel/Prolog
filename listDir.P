@@ -1,0 +1,24 @@
+/*
+
+Implementirajte predikat listaj/2 koji će na temelju zadanog naziva direktorija u izlaznoj varijabli vratiti listu običnih
+(plain) datoteka koje se u njemu nalaze, te promijeniti trenutni direktorij u zadani.
+
+Primjer korištenja:
+
+| ?- listaj( '/home/mschatte/myPackages' , L ).
+
+L = [apache-tomcat-6.0.18.tar.gz,exist.war,install_flash_player_10_linux.deb,openlaszlo.war];
+
+no
+| ?- shell( pwd ).
+/home/mschatte/myPackages
+
+yes
+| ?-
+*/
+
+:- [shellx].
+
+listaj(P,L):-
+	cd(P),
+	findall(_X, (list_directory('.', _X), is_plain_file(_X)), L).

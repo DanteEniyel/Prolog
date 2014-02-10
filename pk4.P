@@ -1,0 +1,19 @@
+/*
+Implementirajte infiksne operatore zb/2 je/2 koji će omogućiti zbrajanje proizvoljnih izraza. Primjeri korištenja:
+
+| ?- 1 zb 2 je X.
+
+X = 3;
+
+no
+| ?- 1 zb 2 zb 3 je X.
+
+X = 6;
+
+no
+| ?- 1 zb 2 zb 3 zb 4 zb 5 je X.
+
+X = 15;
+
+no
+*/

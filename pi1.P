@@ -1,0 +1,36 @@
+radnik(r1, o1, 2000).
+radnik(r2, o1, 2500).
+radnik(r2, o2, 1000).
+radnik(r3, o2, 2000).
+radnik(r4, o2, 4000).
+
+odjel(o1, r2).
+odjel(o2, r4).
+
+
+voditelj(R, L):-
+	bagof(radnik(R1, P), (odjel(O, R), radnik(R1, O, P)), L).
+
+zbroji([], 0).
+zbroji([G|R], S):-
+	zbroji(R, S1),
+	S is S1 + G.
+
+troskovi_odjela(O, T):-
+	findall(P, radnik(_, O, P), L),
+	zbroji(L, T).
+
+
+
+pronadji([],"").
+pronadji([G|R], V, O):-
+	radnik(V,O,P),
+	radnik(G,O,P1),
+	X is P1*2,
+        (P>=X -> true,!;pronadji(R,V,O)).
+
+preplaceni_voditelj(V):-
+	odjel(O,V),
+	findall(R1, radnik(R1, O, _),R),
+	pronadji(R,V,O).
+

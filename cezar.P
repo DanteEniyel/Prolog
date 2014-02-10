@@ -1,0 +1,20 @@
+/*
+Implementirajte predikat kodiraj/2 koji će listu znakova kodirati klasičnom Cezarovom šifrom s pomakom 1
+(svakom kodu slova dodaje se broj 1). Primjer korištenja:
+
+
+| ?- kodiraj( "kolokvij", X ).
+
+X = lpmplwjk;
+
+Pri implementaciji smiju se koristiti ugrađeni predikati.
+
+ 
+*/
+
+kodiraj([],"").
+kodiraj([G|R], I):-
+	kodiraj(R, I1),
+	X is G + 1,
+	char_code(C,X),
+	atom_concat(C, I1, I).

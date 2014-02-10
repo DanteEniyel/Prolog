@@ -1,0 +1,4 @@
+broj_el( [], 0 ).
+broj_el( [ G | R ], N ) :-
+    broj_el( R, N1 ),
+    N is N1 + 1.

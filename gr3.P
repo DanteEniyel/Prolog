@@ -1,0 +1,56 @@
+/*
+Neka je zadana sljedeća baza činjenica:
+
+osoba( ivek ).
+osoba( joza ).
+osoba( bara ).
+
+Implementirajte gramatiku koja će prepoznavati i konstruirati parove osoba.
+
+Primjer korištenja:
+
+| ?- par( X, [ joza, i, bara ], [] ).
+
+X = par(joza,i,bara);
+
+no
+| ?- par( X, Y, [] ).
+
+X = par(ivek,i,ivek)
+Y = [ivek,i,ivek];
+
+X = par(ivek,i,joza)
+Y = [ivek,i,joza];
+
+X = par(ivek,i,bara)
+Y = [ivek,i,bara];
+
+X = par(joza,i,ivek)
+Y = [joza,i,ivek];
+
+X = par(joza,i,joza)
+Y = [joza,i,joza];
+
+X = par(joza,i,bara)
+Y = [joza,i,bara];
+
+X = par(bara,i,ivek)
+Y = [bara,i,ivek];
+
+X = par(bara,i,joza)
+Y = [bara,i,joza];
+
+X = par(bara,i,bara)
+Y = [bara,i,bara];
+
+no
+
+*/
+
+osoba( ivek ).
+osoba( joza ).
+osoba( bara ).
+
+par(par(X,i,Y)) --> o(X), [i], o(Y).
+
+o(Z) --> [Z], {osoba(Z)}. 
